@@ -46,10 +46,18 @@ import { useStore } from "vuex";
 
 import { generatePosition } from "@/services/PositionGenerator";
 
-const cellSizePx = 50;
-
 export default {
-  setup() {
+  props: {
+    cellsSize: {
+      type: Number,
+      required: true,
+    }
+  },
+  setup(props) {
+
+    const cellsSizePx = computed(() => props.cellsSize);
+    const boardSizePx = computed(() => props.cellsSize * 8);
+
     const rootElt = ref();
     const dndData = ref();
 
@@ -136,8 +144,8 @@ export default {
       const evtX = currentX - rootEltX;
       const evtY = currentY - rootEltY;
 
-      const evtCol = parseInt(Math.floor(evtX / cellSizePx));
-      const evtRow = parseInt(Math.floor(evtY / cellSizePx));
+      const evtCol = parseInt(Math.floor(evtX / cellsSizePx.value));
+      const evtRow = parseInt(Math.floor(evtY / cellsSizePx.value));
 
       const isPlayerKnightCell =
         evtCol === playerKnightPos.value.col &&
@@ -145,8 +153,8 @@ export default {
 
       if (!isPlayerKnightCell) return;
       dndData.value = {
-        left: evtCol * cellSizePx,
-        top: evtRow * cellSizePx,
+        left: evtCol * cellsSizePx.value,
+        top: evtRow * cellsSizePx.value,
         startCol: evtCol,
         startRow: evtRow,
       };
@@ -163,8 +171,8 @@ export default {
       const evtX = currentX - rootEltX;
       const evtY = currentY - rootEltY;
 
-      const evtCol = parseInt(Math.floor(evtX / cellSizePx));
-      const evtRow = parseInt(Math.floor(evtY / cellSizePx));
+      const evtCol = parseInt(Math.floor(evtX / cellsSizePx.value));
+      const evtRow = parseInt(Math.floor(evtY / cellsSizePx.value));
 
       dndData.value = {
         ...dndData.value,
@@ -216,8 +224,8 @@ export default {
       const evtX = currentX - rootEltX;
       const evtY = currentY - rootEltY;
 
-      const evtCol = parseInt(Math.floor(evtX / cellSizePx));
-      const evtRow = parseInt(Math.floor(evtY / cellSizePx));
+      const evtCol = parseInt(Math.floor(evtX / cellsSizePx.value));
+      const evtRow = parseInt(Math.floor(evtY / cellsSizePx.value));
 
       const colInBounds = evtCol >= 0 && evtCol <= 7;
       const rowInBounds = evtRow >= 0 && evtRow <= 7;
@@ -241,13 +249,13 @@ export default {
     const playerKnightLeft = computed(() => {
       const newValue = dndData.value
         ? dndData.value.left
-        : playerKnightPos.value.col * cellSizePx;
+        : playerKnightPos.value.col * cellsSizePx.value;
       return newValue + "px";
     });
     const playerKnightTop = computed(() => {
       const newValue = dndData.value
         ? dndData.value.top
-        : playerKnightPos.value.row * cellSizePx;
+        : playerKnightPos.value.row * cellsSizePx.value;
       return newValue + "px";
     });
 
@@ -283,11 +291,11 @@ export default {
     }
 
     function getXForCol(col) {
-      return col * cellSizePx + "px";
+      return col * cellsSizePx.value + "px";
     }
 
     function getYForRow(row) {
-      return row * cellSizePx + "px";
+      return row * cellsSizePx.value + "px";
     }
 
     async function newGame(opponentsCount) {
@@ -360,6 +368,8 @@ export default {
       playerImage,
       gameActive,
       updatePosition,
+      cellsSizePx,
+      boardSizePx,
     };
   },
 };
@@ -368,8 +378,8 @@ export default {
 <style scoped>
 .grid {
   position: relative;
-  width: 400px;
-  height: 400px;
+  width: calc(v-bind('boardSizePx') * 1px);
+  height: calc(v-bind('boardSizePx') * 1px);
   display: grid;
   grid-template: repeat(8, 1fr) / auto;
 }
@@ -401,8 +411,8 @@ export default {
 
 .pieces_layer {
   position: absolute;
-  width: 400px;
-  height: 400px;
+  width: calc(v-bind('boardSizePx') * 1px);
+  height: calc(v-bind('boardSizePx') * 1px);
 }
 
 #player_knight {

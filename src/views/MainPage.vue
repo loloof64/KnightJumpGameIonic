@@ -4,7 +4,7 @@
       <div id="root">
         <new-game-dialog ref="newGameDialog" />
         <game-rules ref="gameRulesDialog" />
-        <chess-board id="board" ref="board" />
+        <chess-board id="board" ref="board" :cellsSize="cellsSize" />
         <div id="buttons_zone">
           <button @click="showNewGameDialog" class="new_game">
             {{ t("main_page.new_game_button") }}
@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import { ref, watch, computed } from "vue";
+import { ref, watch, computed , onMounted} from "vue";
 import { useI18n } from "vue-i18n";
 import { useStore } from "vuex";
 import { IonContent, IonPage } from "@ionic/vue";
@@ -62,6 +62,8 @@ import GameRules from "@/components/GameRules";
 export default {
   name: "MainPage",
   setup() {
+    const cellsSize = ref(0);
+
     const newGameDialog = ref();
     const gameRulesDialog = ref();
     const isGeneratingGame = ref(false);
@@ -139,6 +141,13 @@ export default {
       store.dispatch("setAnswerIndex", parseInt(slider.value.value));
     }
 
+    onMounted(() => {
+      const screenWidth = window.screen.width;
+      const screenHeight = window.screen.height;
+      const minSize = Math.min(screenWidth, screenHeight);
+      cellsSize.value = minSize / 8;
+    });
+
     return {
       newGameDialog,
       gameRulesDialog,
@@ -159,6 +168,7 @@ export default {
       answerIndex,
       handleSliderChanged,
       slider,
+      cellsSize,
       t,
     };
   },
