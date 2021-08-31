@@ -417,9 +417,13 @@ export default {
 
 #player_knight {
   position: absolute;
+  width: calc(v-bind('cellsSizePx') * 1px);
+  height: calc(v-bind('cellsSizePx') * 1px);
 }
 
 .opponent_piece {
   position: absolute;
+  width: calc(v-bind('cellsSizePx') * 1px);
+  height: calc(v-bind('cellsSizePx') * 1px);
 }
 </style>

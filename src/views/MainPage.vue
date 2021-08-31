@@ -5,43 +5,45 @@
         <new-game-dialog ref="newGameDialog" />
         <game-rules ref="gameRulesDialog" />
         <chess-board id="board" ref="board" :cellsSize="cellsSize" />
-        <div id="buttons_zone">
-          <button @click="showNewGameDialog" class="new_game">
-            {{ t("main_page.new_game_button") }}
-          </button>
+        <div id="controls">
           <span id="ennemies_count" v-if="opponentPiecesCount > 0">
             {{ opponentPiecesCount }} {{ t("main_page.opponent_pieces") }}
           </span>
-          <button @click="showGameRulesDialog" class="games_rules">
-            {{ t("main_page.game_rules_button") }}
-          </button>
-        </div>
-        <div class="generation_zone" v-if="isGeneratingGame">
-          <progress
-            class="progressBar"
-            min="0"
-            :max="generationSteps"
-            :value="generationStepProgress"
-          ></progress>
-          <button @click="cancelGameGeneration" class="cancel_generation">
-            {{ t("main_page.cancel_generation") }}
-          </button>
-        </div>
-        <div class="solution_controls" v-if="solutionControlsVisible">
-          <div class="header">{{ t("main_page.possible_solution") }}</div>
-          <div class="content">
-            <button @click="goPreviousSolution">&lt;</button>
-            <input
-              ref="slider"
-              type="range"
-              class="slider"
-              step="1"
+          <div id="buttons_zone">
+            <button @click="showNewGameDialog" class="new_game">
+              {{ t("main_page.new_game_button") }}
+            </button>
+            <button @click="showGameRulesDialog" class="games_rules">
+              {{ t("main_page.game_rules_button") }}
+            </button>
+          </div>
+          <div class="generation_zone" v-if="isGeneratingGame">
+            <progress
+              class="progressBar"
               min="0"
-              :max="solutionSteps"
-              :value="answerIndex"
-              @change="handleSliderChanged"
-            />
-            <button @click="goNextSolution">&gt;</button>
+              :max="generationSteps"
+              :value="generationStepProgress"
+            ></progress>
+            <button @click="cancelGameGeneration" class="cancel_generation">
+              {{ t("main_page.cancel_generation") }}
+            </button>
+          </div>
+          <div class="solution_controls" v-if="solutionControlsVisible">
+            <div class="header">{{ t("main_page.possible_solution") }}</div>
+            <div class="content">
+              <button @click="goPreviousSolution">&lt;</button>
+              <input
+                ref="slider"
+                type="range"
+                class="slider"
+                step="1"
+                min="0"
+                :max="solutionSteps"
+                :value="answerIndex"
+                @change="handleSliderChanged"
+              />
+              <button @click="goNextSolution">&gt;</button>
+            </div>
           </div>
         </div>
       </div>
@@ -50,10 +52,11 @@
 </template>
 
 <script>
-import { ref, watch, computed , onMounted} from "vue";
+import { ref, watch, computed, onMounted, onBeforeUnmount } from "vue";
 import { useI18n } from "vue-i18n";
 import { useStore } from "vuex";
 import { IonContent, IonPage } from "@ionic/vue";
+import { ScreenOrientation } from "@ionic-native/screen-orientation";
 
 import ChessBoard from "@/components/ChessBoard";
 import NewGameDialog from "@/components/NewGameDialog";
@@ -63,6 +66,7 @@ export default {
   name: "MainPage",
   setup() {
     const cellsSize = ref(0);
+    const rootFlexDirection = ref("row");
 
     const newGameDialog = ref();
     const gameRulesDialog = ref();
@@ -74,6 +78,12 @@ export default {
 
     const opponentPiecesCount = ref(store.state.opponentPiecesCount);
     const answerIndex = ref(0);
+
+    function adjustLayoutDirection() {
+      const orientationType = ScreenOrientation.type;
+      const isPortrait = orientationType.includes("portrait");
+      rootFlexDirection.value = isPortrait ? "column" : "row";
+    }
 
     async function showNewGameDialog() {
       const opponentPiecesCount = await newGameDialog.value.show();
@@ -144,8 +154,15 @@ export default {
     onMounted(() => {
       const screenWidth = window.screen.width;
       const screenHeight = window.screen.height;
-      const minSize = Math.min(screenWidth, screenHeight);
+      const minSize = Math.min(screenWidth, screenHeight) * 0.92;
       cellsSize.value = minSize / 8;
+
+      adjustLayoutDirection();
+    });
+
+    window.addEventListener("orientationchange", adjustLayoutDirection);
+    onBeforeUnmount(function () {
+      window.removeEventListener("orientationchange", adjustLayoutDirection);
     });
 
     return {
@@ -169,6 +186,7 @@ export default {
       handleSliderChanged,
       slider,
       cellsSize,
+      rootFlexDirection,
       t,
     };
   },
@@ -185,7 +203,7 @@ export default {
 <style scoped>
 #root {
   display: flex;
-  flex-direction: column;
+  flex-direction: v-bind("rootFlexDirection");
   justify-content: stretch;
   align-items: center;
 }
@@ -193,6 +211,13 @@ export default {
 body,
 html {
   margin: 0;
+}
+
+#controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 button {
