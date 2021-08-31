@@ -1,11 +1,5 @@
 <template>
-  <div
-    ref="rootElt"
-    class="grid"
-    @mousedown="handleDragStart"
-    @mousemove="handleDrag"
-    @mouseup="handleDragEnd"
-  >
+  <div ref="rootElt" class="grid">
     <div
       class="grid_row"
       v-for="row in [0, 1, 2, 3, 4, 5, 6, 7]"
@@ -45,7 +39,8 @@
 </template>
 
 <script>
-import { ref, computed } from "vue";
+import { createGesture } from "@ionic/vue";
+import { ref, computed, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import { useStore } from "vuex";
 
@@ -73,9 +68,27 @@ export default {
     const opponentPieces = ref([]);
 
     function classForCell(row, col) {
-      return (row + col) % 2 == 0
-        ? { white_cell: true, black_cell: false }
-        : { white_cell: false, black_cell: true };
+      const standardBg =  (row + col) % 2 == 0
+        ? { white_cell: true }
+        : { black_cell: true };
+
+      const startCellBg = { dnd_start_cell : true};
+      const targetCellBg = {dnd_target_cell: true};
+      const crossCellBg = {dnd_cross_indicator_cell: true};
+
+      let background = standardBg;
+
+      if (dndIsActive.value) {
+        const isStartCell = row === dndData.value.startRow && col === dndData.value.startCol;
+        const isTargetCell = row === dndData.value.targetRow && col === dndData.value.targetCol;
+        const isDndCrossCell = row === dndData.value.targetRow || col === dndData.value.targetCol;
+
+        if (isStartCell) background = startCellBg;
+        if (isDndCrossCell) background = crossCellBg;
+        if (isTargetCell) background = targetCellBg;
+      }
+
+      return background;
     }
 
     function isPlayerKnightPos(row, col) {
@@ -116,12 +129,12 @@ export default {
 
     function handleDragStart(event) {
       if (!gameActive.value) return;
-      const { clientX, clientY } = event;
+      const { currentX, currentY } = event;
       const rootElementRect = rootElt.value.getBoundingClientRect();
       const rootEltX = rootElementRect.left;
       const rootEltY = rootElementRect.top;
-      const evtX = clientX - rootEltX;
-      const evtY = clientY - rootEltY;
+      const evtX = currentX - rootEltX;
+      const evtY = currentY - rootEltY;
 
       const evtCol = parseInt(Math.floor(evtX / cellSizePx));
       const evtRow = parseInt(Math.floor(evtY / cellSizePx));
@@ -134,6 +147,8 @@ export default {
       dndData.value = {
         left: evtCol * cellSizePx,
         top: evtRow * cellSizePx,
+        startCol: evtCol,
+        startRow: evtRow,
       };
     }
 
@@ -141,16 +156,22 @@ export default {
       if (!gameActive.value) return;
       if (!dndData.value) return;
 
-      const { clientX, clientY } = event;
+      const { currentX, currentY } = event;
       const rootElementRect = rootElt.value.getBoundingClientRect();
       const rootEltX = rootElementRect.left;
       const rootEltY = rootElementRect.top;
-      const evtX = clientX - rootEltX;
-      const evtY = clientY - rootEltY;
+      const evtX = currentX - rootEltX;
+      const evtY = currentY - rootEltY;
+
+      const evtCol = parseInt(Math.floor(evtX / cellSizePx));
+      const evtRow = parseInt(Math.floor(evtY / cellSizePx));
 
       dndData.value = {
+        ...dndData.value,
         left: evtX,
         top: evtY,
+        targetCol: evtCol,
+        targetRow: evtRow,
       };
     }
 
@@ -188,12 +209,12 @@ export default {
       if (!gameActive.value) return;
       if (!dndData.value) return;
 
-      const { clientX, clientY } = event;
+      const { currentX, currentY } = event;
       const rootElementRect = rootElt.value.getBoundingClientRect();
       const rootEltX = rootElementRect.left;
       const rootEltY = rootElementRect.top;
-      const evtX = clientX - rootEltX;
-      const evtY = clientY - rootEltY;
+      const evtX = currentX - rootEltX;
+      const evtY = currentY - rootEltY;
 
       const evtCol = parseInt(Math.floor(evtX / cellSizePx));
       const evtRow = parseInt(Math.floor(evtY / cellSizePx));
@@ -233,17 +254,29 @@ export default {
     function opponentImageForValue(value) {
       switch (value.toLowerCase()) {
         case "k":
-          return playerIsWhite.value ? '/assets/chess_vectors/Chess_kdt45.svg' : '/assets/chess_vectors/Chess_klt45.svg';
+          return playerIsWhite.value
+            ? "/assets/chess_vectors/Chess_kdt45.svg"
+            : "/assets/chess_vectors/Chess_klt45.svg";
         case "q":
-          return playerIsWhite.value ? '/assets/chess_vectors/Chess_qdt45.svg' : '/assets/chess_vectors/Chess_qlt45.svg';
+          return playerIsWhite.value
+            ? "/assets/chess_vectors/Chess_qdt45.svg"
+            : "/assets/chess_vectors/Chess_qlt45.svg";
         case "r":
-          return playerIsWhite.value ? '/assets/chess_vectors/Chess_rdt45.svg' : '/assets/chess_vectors/Chess_rlt45.svg';
+          return playerIsWhite.value
+            ? "/assets/chess_vectors/Chess_rdt45.svg"
+            : "/assets/chess_vectors/Chess_rlt45.svg";
         case "b":
-          return playerIsWhite.value ? '/assets/chess_vectors/Chess_bdt45.svg' : '/assets/chess_vectors/Chess_blt45.svg';
+          return playerIsWhite.value
+            ? "/assets/chess_vectors/Chess_bdt45.svg"
+            : "/assets/chess_vectors/Chess_blt45.svg";
         case "n":
-          return playerIsWhite.value ? '/assets/chess_vectors/Chess_ndt45.svg' : '/assets/chess_vectors/Chess_nlt45.svg';
+          return playerIsWhite.value
+            ? "/assets/chess_vectors/Chess_ndt45.svg"
+            : "/assets/chess_vectors/Chess_nlt45.svg";
         case "p":
-          return playerIsWhite.value ? '/assets/chess_vectors/Chess_pdt45.svg' : '/assets/chess_vectors/Chess_plt45.svg';
+          return playerIsWhite.value
+            ? "/assets/chess_vectors/Chess_pdt45.svg"
+            : "/assets/chess_vectors/Chess_plt45.svg";
         default:
           return;
       }
@@ -284,26 +317,37 @@ export default {
       opponentPieces.value = opponents;
     }
 
-    const playerImage = computed(() => (playerIsWhite.value ? '/assets/chess_vectors/Chess_nlt45.svg' : '/assets/chess_vectors/Chess_ndt45.svg'));
+    const playerImage = computed(() =>
+      playerIsWhite.value
+        ? "/assets/chess_vectors/Chess_nlt45.svg"
+        : "/assets/chess_vectors/Chess_ndt45.svg"
+    );
 
     store.subscribe((mutation, state) => {
-      
       if (mutation.type === "setAnswerIndex") {
         if (gameActive.value) return;
         updatePosition();
-      }
-      else if (mutation.type === "setGameActive") {
+      } else if (mutation.type === "setGameActive") {
         gameActive.value = state.gameActive;
       }
+    });
+
+    onMounted(() => {
+      const gesture = createGesture({
+        el: rootElt.value,
+        threshold: 0,
+        onStart: handleDragStart,
+        onEnd: handleDragEnd,
+        onMove: handleDrag,
+      });
+
+      gesture.enable();
     });
 
     return {
       rootElt,
       isPlayerKnightPos,
       classForCell,
-      handleDragStart,
-      handleDrag,
-      handleDragEnd,
       dndIsActive,
       dndData,
       playerKnightLeft,
@@ -341,6 +385,18 @@ export default {
 
 .black_cell {
   background-color: peru;
+}
+
+.dnd_start_cell {
+  background-color: red;
+}
+
+.dnd_target_cell {
+  background-color: green;
+}
+
+.dnd_cross_indicator_cell {
+  background-color: indigo;
 }
 
 .pieces_layer {

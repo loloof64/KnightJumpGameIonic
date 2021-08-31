@@ -53,6 +53,7 @@
 import { ref, watch, computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { useStore } from "vuex";
+import { IonContent, IonPage } from "@ionic/vue";
 
 import ChessBoard from "@/components/ChessBoard";
 import NewGameDialog from "@/components/NewGameDialog";
@@ -165,6 +166,8 @@ export default {
     ChessBoard,
     NewGameDialog,
     GameRules,
+    IonPage,
+    IonContent,
   },
 };
 </script>
