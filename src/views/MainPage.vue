@@ -190,10 +190,6 @@ export default {
   align-items: center;
 }
 
-#board {
-  margin: 0.8rem auto;
-}
-
 body,
 html {
   margin: 0;
@@ -223,6 +219,7 @@ button.cancel_generation {
   justify-content: space-around;
   align-items: center;
   width: 100%;
+  margin: 0.8rem 0;
 }
 
 #ennemies_count {
