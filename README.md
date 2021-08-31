@@ -5,7 +5,13 @@ Try to eat all ennemies with your knight.
 
 ## Credits
 
+### Application icon
+
 Application icon has been downloaded from Flaticons website : designed by Freepik and downloaded at https://www.flaticon.com/free-icon/jumping-horse-with-jockey_32979.
+
+#### Chess vectors
+
+Chess vectors have been designed by CBurnett and downloaded from https://commons.wikimedia.org/wiki/Category:SVG_chess_pieces.
 
 ## Developers
 
