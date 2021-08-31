@@ -16,7 +16,7 @@ export default {
     generation_failure: "Echec de génération du jeu : vous devriez essayer avec moins de pièces adverses.",
   },
   new_game_dialog: {
-    title: "Veuillez choisir le nombre de pièces adverses :",
+    title: "Veuillez choisir le nombre de pièces adverses (6-30) :",
   },
   games_rules: {
     title: "Règles",

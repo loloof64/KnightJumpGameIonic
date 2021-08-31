@@ -16,7 +16,7 @@ export default {
     generation_failure: "No se pudo generar el juego: debes volver a intentarlo con menos piezas del oponente.",
   },
   new_game_dialog: {
-    title: "Elige el número de piezas del oponente :",
+    title: "Elige el número de piezas del oponente (6-30) :",
   },
   games_rules: {
     title: "Normas",
