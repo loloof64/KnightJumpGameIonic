@@ -1,0 +1,7 @@
+{
+  "name": "KnightJumpGame",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
