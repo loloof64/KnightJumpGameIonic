@@ -22,8 +22,8 @@ export default {
   games_rules: {
     title: "Rules",
     content_1:
-      "The goal of the game is to try to catch all pieces with your knight.",
-    content_2: "You win if there is no more opponent piece left.",
+      "The goal of the game is to try to catch all pieces with your knight: given that you cannot jump on an empty square.",
+    content_2: "You win if there is no more opponent piece left. You loose if you cannot move any more.",
   },
   about_dialog: {
     title: "About",

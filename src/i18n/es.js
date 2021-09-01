@@ -22,8 +22,8 @@ export default {
   games_rules: {
     title: "Normas",
     content_1:
-      "El objetivo del juego es intentar atrapar todas las piezas con tu caballero.",
-    content_2: "Ganas si no queda más pieza del oponente.",
+      "El objetivo del juego es intentar atrapar todas las piezas con tu caballero: dado que no se puede saltar sobre un cuadrado vacío.",
+    content_2: "Ganas si no queda más pieza del oponente. Pierdes si no puedes moverte más.",
   },
   about_dialog: {
     title: "A proposito",
