@@ -81,9 +81,11 @@ h3 {
   font-size: 1.6rem;
   display: inline-block;
   margin: 0 auto;
+  color: rebeccapurple;
 }
 
 p {
+  color: saddlebrown;
   font-size: 1.6rem;
   margin: 0 auto;
 }
