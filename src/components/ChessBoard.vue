@@ -316,7 +316,7 @@ export default {
       const index = store.state.answerIndex;
       const answerData = store.state.answerData;
 
-      const currentAnswerData = answerData[index];
+      const currentAnswerData = answerData[index]
 
       const { playerKnight: playerPos, opponentPieces: opponents } =
         currentAnswerData;
