@@ -51,10 +51,9 @@ export default {
     cellsSize: {
       type: Number,
       required: true,
-    }
+    },
   },
   setup(props) {
-
     const cellsSizePx = computed(() => props.cellsSize);
     const boardSizePx = computed(() => props.cellsSize * 8);
 
@@ -76,20 +75,22 @@ export default {
     const opponentPieces = ref([]);
 
     function classForCell(row, col) {
-      const standardBg =  (row + col) % 2 == 0
-        ? { white_cell: true }
-        : { black_cell: true };
+      const standardBg =
+        (row + col) % 2 == 0 ? { white_cell: true } : { black_cell: true };
 
-      const startCellBg = { dnd_start_cell : true};
-      const targetCellBg = {dnd_target_cell: true};
-      const crossCellBg = {dnd_cross_indicator_cell: true};
+      const startCellBg = { dnd_start_cell: true };
+      const targetCellBg = { dnd_target_cell: true };
+      const crossCellBg = { dnd_cross_indicator_cell: true };
 
       let background = standardBg;
 
       if (dndIsActive.value) {
-        const isStartCell = row === dndData.value.startRow && col === dndData.value.startCol;
-        const isTargetCell = row === dndData.value.targetRow && col === dndData.value.targetCol;
-        const isDndCrossCell = row === dndData.value.targetRow || col === dndData.value.targetCol;
+        const isStartCell =
+          row === dndData.value.startRow && col === dndData.value.startCol;
+        const isTargetCell =
+          row === dndData.value.targetRow && col === dndData.value.targetCol;
+        const isDndCrossCell =
+          row === dndData.value.targetRow || col === dndData.value.targetCol;
 
         if (isStartCell) background = startCellBg;
         if (isDndCrossCell) background = crossCellBg;
@@ -310,13 +311,14 @@ export default {
           alert(t("game_messages.generation_failure"));
         }
       }
+      store.dispatch("resetCancelGenerationFlag");
     }
 
     function updatePosition() {
       const index = store.state.answerIndex;
       const answerData = store.state.answerData;
 
-      const currentAnswerData = answerData[index]
+      const currentAnswerData = answerData[index];
 
       const { playerKnight: playerPos, opponentPieces: opponents } =
         currentAnswerData;
@@ -378,8 +380,8 @@ export default {
 <style scoped>
 .grid {
   position: relative;
-  width: calc(v-bind('boardSizePx') * 1px);
-  height: calc(v-bind('boardSizePx') * 1px);
+  width: calc(v-bind("boardSizePx") * 1px);
+  height: calc(v-bind("boardSizePx") * 1px);
   display: grid;
   grid-template: repeat(8, 1fr) / auto;
 }
@@ -411,19 +413,19 @@ export default {
 
 .pieces_layer {
   position: absolute;
-  width: calc(v-bind('boardSizePx') * 1px);
-  height: calc(v-bind('boardSizePx') * 1px);
+  width: calc(v-bind("boardSizePx") * 1px);
+  height: calc(v-bind("boardSizePx") * 1px);
 }
 
 #player_knight {
   position: absolute;
-  width: calc(v-bind('cellsSizePx') * 1px);
-  height: calc(v-bind('cellsSizePx') * 1px);
+  width: calc(v-bind("cellsSizePx") * 1px);
+  height: calc(v-bind("cellsSizePx") * 1px);
 }
 
 .opponent_piece {
   position: absolute;
-  width: calc(v-bind('cellsSizePx') * 1px);
-  height: calc(v-bind('cellsSizePx') * 1px);
+  width: calc(v-bind("cellsSizePx") * 1px);
+  height: calc(v-bind("cellsSizePx") * 1px);
 }
 </style>
