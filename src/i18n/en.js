@@ -22,7 +22,7 @@ export default {
   games_rules: {
     title: "Rules",
     content_1:
-      "The goal of the game is to try to eat all pieces with your knight.",
+      "The goal of the game is to try to catch all pieces with your knight.",
     content_2: "You win if there is no more opponent piece left.",
   },
   about_dialog: {

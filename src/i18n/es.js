@@ -22,7 +22,7 @@ export default {
   games_rules: {
     title: "Normas",
     content_1:
-      "El objetivo del juego es intentar comerse todas las piezas con tu caballero.",
+      "El objetivo del juego es intentar atrapar todas las piezas con tu caballero.",
     content_2: "Ganas si no queda más pieza del oponente.",
   },
   about_dialog: {

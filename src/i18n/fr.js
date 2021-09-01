@@ -22,7 +22,7 @@ export default {
   games_rules: {
     title: "Règles",
     content_1:
-      "Le but du jeu est d'essayer de manger toutes les pièces adverses avec votre cavalier.",
+      "Le but du jeu est d'essayer de capturer toutes les pièces adverses avec votre cavalier.",
     content_2: "Vous gagnez si l'adversaire ne dispose plus de pièce.",
   },
   about_dialog: {

@@ -1,0 +1,9 @@
+1. Utiliser le keystore my-android-keystore.jks (dossier android/app)
+2. Définir le keystore.properties suivant (dossier android) :
+
+storePassword=aU_>$'933ze,h,?
+keyPassword=SH6"ygd!B9%F;*gr
+keyAlias=loloof64ks
+storeFile=my-android-keystore.jks
+
+3. ./gradlew bundleRelease (depuis dossier android) 

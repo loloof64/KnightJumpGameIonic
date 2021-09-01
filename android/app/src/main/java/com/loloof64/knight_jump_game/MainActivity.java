@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package com.loloof64.knight_jump_game;
 
 import com.getcapacitor.BridgeActivity;
 
