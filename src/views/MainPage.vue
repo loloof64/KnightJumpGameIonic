@@ -209,8 +209,8 @@ export default {
 #root {
   display: flex;
   flex-direction: v-bind("rootFlexDirection");
-  justify-content: "center";
-  align-items: "center";
+  justify-content: center;
+  align-items: center;
 }
 
 body,

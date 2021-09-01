@@ -106,6 +106,8 @@ export default {
 
 h3 {
   font-size: 1.6rem;
+  display: inline-block;
+  margin: 0 auto;
 }
 
 .buttons_zone {
