@@ -130,10 +130,10 @@ function generateOpponents(playerKnightPosition, opponentsCount) {
         clearInterval(checkCancelRequestIntervalHandle);
         resolve("cancelled");
         return;
-      } else if (opponents.length === opponentsCount) {
+      } else if (opponents.length >= opponentsCount) {
         clearTimeout(breakTimeoutHandle);
         clearInterval(checkCancelRequestIntervalHandle);
-        resolve(opponents);
+        resolve(opponents.slice(0, opponentsCount));
         return;
       } else {
         setTimeout(iteration, 50);
