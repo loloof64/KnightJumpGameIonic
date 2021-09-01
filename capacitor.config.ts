@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'com.loloof64.knight_jump_game',
   appName: 'KnightJumpGame',
   webDir: 'dist',
   bundledWebRuntime: false

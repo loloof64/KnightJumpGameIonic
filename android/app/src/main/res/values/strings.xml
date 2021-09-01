@@ -2,6 +2,6 @@
 <resources>
     <string name="app_name">Knight Jump Game</string>
     <string name="title_activity_main">Knight Jump Game</string>
-    <string name="package_name">io.ionic.starter</string>
-    <string name="custom_url_scheme">io.ionic.starter</string>
+    <string name="package_name">com.loloof64.knight_jump_game</string>
+    <string name="custom_url_scheme">com.loloof64.knight_jump_game</string>
 </resources>
