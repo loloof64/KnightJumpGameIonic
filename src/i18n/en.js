@@ -17,7 +17,7 @@ export default {
     generation_failure: "Failed to generate game : you should retry with less opponent pieces.",
   },
   new_game_dialog: {
-    title: "Choose the opponent's pieces count (6-30) :",
+    title: "Choose the opponent's pieces count :",
   },
   games_rules: {
     title: "Rules",

@@ -55,7 +55,7 @@ function generateValue() {
 
 export const OPPONENTS_MIN_COUNT = 6;
 export const OPPONENTS_MAX_COUNT = 30;
-const TIMEOUT = 1000 * 60 * 2;
+const TIMEOUT = 1000 * 60 * 1.2;
 
 function getNextOpponent({
   currentCell,

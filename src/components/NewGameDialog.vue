@@ -2,12 +2,17 @@
   <div id="backdrop" v-if="isVisible">
     <div id="content">
       <h3>{{ t("new_game_dialog.title") }}</h3>
+      <div id="ennemies_definition">
       <input
-        type="number"
+        type="range"
         :min="OPPONENTS_MIN_COUNT"
         :max="OPPONENTS_MAX_COUNT"
         v-model="opponentsCount"
       />
+      <span>
+      {{ opponentsCount }}
+      </span>
+      </div>
       <div class="buttons_zone">
         <button @click="handleCancel" class="cancel">
           {{ t("dialogs_generalities.cancel_button") }}
@@ -107,13 +112,24 @@ export default {
 h3 {
   font-size: 1.6rem;
   display: inline-block;
-  margin: 0 auto;
+  margin: 0 1.2rem;
 }
 
 .buttons_zone {
   display: flex;
   flex-direction: row;
   justify-content: stretch;
+}
+
+#ennemies_definition {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#ennemies_definition span {
+  font-size: 1.6rem;
 }
 
 button {
