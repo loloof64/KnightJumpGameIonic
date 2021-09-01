@@ -71,10 +71,12 @@ export default {
   width: 80%;
   height: 80%;
   display: flex;
-  justify-content: space-evenly;
-  align-items: stretch;
   flex-direction: column;
-  padding: 5rem;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0.8rem;
+  overflow: scroll;
+  overflow-wrap: anywhere;
 }
 
 h3 {
@@ -87,7 +89,7 @@ h3 {
 p {
   color: saddlebrown;
   font-size: 1.6rem;
-  margin: 0 auto;
+  margin: 0.8rem auto;
 }
 
 button {
