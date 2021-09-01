@@ -301,8 +301,8 @@ export default {
 
     async function newGame(opponentsCount) {
       try {
-        playerIsWhite.value = parseInt(Math.random() * 2) > 0;
         const position = await generatePosition(opponentsCount);
+        playerIsWhite.value = parseInt(Math.random() * 2) > 0;
         playerKnightPos.value = position.playerKnight;
         opponentPieces.value = position.opponentPieces;
         store.dispatch("setGameActive", true);
