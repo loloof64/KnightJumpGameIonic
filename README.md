@@ -7,7 +7,7 @@ Try to eat all ennemies with your knight.
 
 ### Application icon
 
-Application icon has been downloaded from Flaticons website : designed by Freepik and downloaded at https://www.flaticon.com/free-icon/jumping-horse-with-jockey_32979.
+Application icon has been downloaded from Pixabay website : designed by Gorkhs and downloaded at https://pixabay.com/fr/vectors/saut-obstacle-%C3%A9questre-cheval-1785763.
 
 #### Chess vectors
 

@@ -27,7 +27,7 @@ export default {
   },
   about_dialog: {
     title: "About",
-    application_icon: "Application icon has been downloaded from FlatIcon website (https://www.flaticon.com/free-icon/jumping-horse-with-jockey_32979) and designed by FreePik.",
+    application_icon: "Application icon has been downloaded from Pixabay website (https://pixabay.com/fr/vectors/saut-obstacle-équestre-cheval-1785763) and designed by Gorkhs.",
     chess_vectors: "Chess vectors have been downloaded from Wikimedia Commons (https://commons.wikimedia.org/wiki/Category:SVG_chess_pieces) and designed by CBurnett.",
   }
 };

@@ -27,7 +27,7 @@ export default {
   },
   about_dialog: {
     title: "A proposito",
-    application_icon: "El icono de la aplicación se descargó del sitio web FlatIcon (https://www.flaticon.com/free-icon/jumping-horse-with-jockey_32979) y fue diseñado por FreePik.",
+    application_icon: "El icono de la aplicación se descargó del sitio web Pixabay (https://pixabay.com/fr/vectors/saut-obstacle-équestre-cheval-1785763) y fue diseñado por Gorkhs.",
     chess_vectors: "Los vectores de ajedrez se descargaron de Wikimedia Commons (https://commons.wikimedia.org/wiki/Category:SVG_chess_pieces) y fueron diseñados por CBurnett.",
   }
 };

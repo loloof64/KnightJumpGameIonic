@@ -27,7 +27,7 @@ export default {
   },
   about_dialog: {
     title: "A propos",
-    application_icon: "L'icône de l'application a été téléchargée depuis le site FlatIcon (https://www.flaticon.com/free-icon/jumping-horse-with-jockey_32979) et a été dessinée par FreePik.",
+    application_icon: "L'icône de l'application a été téléchargée depuis le site Pixabay (https://pixabay.com/fr/vectors/saut-obstacle-équestre-cheval-1785763) et a été dessinée par Gorkhs.",
     chess_vectors: "Les images du jeu d'échec ont été téléchargées depuis le site Wikimedia Commons (https://commons.wikimedia.org/wiki/Category:SVG_chess_pieces) et ont été dessinées par CBurnett.",
   }
 };
