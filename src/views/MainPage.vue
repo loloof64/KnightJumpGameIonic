@@ -1,6 +1,6 @@
 <template>
   <ion-page>
-    <ion-content :fullscreen="true">
+    <ion-content>
       <div id="root">
         <new-game-dialog ref="newGameDialog" />
         <game-rules ref="gameRulesDialog" />
@@ -67,6 +67,7 @@ export default {
   setup() {
     const cellsSize = ref(0);
     const rootFlexDirection = ref("row");
+    const controlsWidth = ref(0);
 
     const newGameDialog = ref();
     const gameRulesDialog = ref();
@@ -83,6 +84,9 @@ export default {
       const orientationType = ScreenOrientation.type;
       const isPortrait = orientationType.includes("portrait");
       rootFlexDirection.value = isPortrait ? "column" : "row";
+      controlsWidth.value = isPortrait
+        ? cellsSize.value * 8 + "px"
+        : "calc(100% - " + cellsSize.value * 8 + "px)";
     }
 
     async function showNewGameDialog() {
@@ -186,6 +190,7 @@ export default {
       handleSliderChanged,
       slider,
       cellsSize,
+      controlsWidth,
       rootFlexDirection,
       t,
     };
@@ -204,20 +209,13 @@ export default {
 #root {
   display: flex;
   flex-direction: v-bind("rootFlexDirection");
-  justify-content: stretch;
-  align-items: center;
+  justify-content: "center";
+  align-items: "center";
 }
 
 body,
 html {
   margin: 0;
-}
-
-#controls {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
 }
 
 button {
@@ -238,10 +236,18 @@ button.cancel_generation {
   background-color: red;
 }
 
+#controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: v-bind("controlsWidth");
+}
+
 #buttons_zone {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   width: 100%;
   margin: 0.8rem 0;
