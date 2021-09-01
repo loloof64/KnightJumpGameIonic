@@ -4,6 +4,7 @@
       <div id="root">
         <new-game-dialog ref="newGameDialog" />
         <game-rules ref="gameRulesDialog" />
+        <about-dialog ref="aboutDialog" />
         <chess-board id="board" ref="board" :cellsSize="cellsSize" />
         <div id="controls">
           <span id="ennemies_count" v-if="opponentPiecesCount > 0">
@@ -17,6 +18,9 @@
               {{ t("main_page.game_rules_button") }}
             </button>
           </div>
+          <button @click="showAboutDialog" class="about_dlg">
+            {{ t("main_page.about_button") }}
+          </button>
           <div class="generation_zone" v-if="isGeneratingGame">
             <progress
               class="progressBar"
@@ -61,6 +65,7 @@ import { ScreenOrientation } from "@ionic-native/screen-orientation";
 import ChessBoard from "@/components/ChessBoard";
 import NewGameDialog from "@/components/NewGameDialog";
 import GameRules from "@/components/GameRules";
+import AboutDialog from "@/components/AboutDialog";
 
 export default {
   name: "MainPage",
@@ -71,6 +76,7 @@ export default {
 
     const newGameDialog = ref();
     const gameRulesDialog = ref();
+    const aboutDialog = ref();
     const isGeneratingGame = ref(false);
     const slider = ref();
     const board = ref();
@@ -100,6 +106,10 @@ export default {
 
     async function showGameRulesDialog() {
       await gameRulesDialog.value.show();
+    }
+
+    async function showAboutDialog() {
+      await aboutDialog.value.show();
     }
 
     function cancelGameGeneration() {
@@ -172,8 +182,10 @@ export default {
     return {
       newGameDialog,
       gameRulesDialog,
+      aboutDialog,
       showNewGameDialog,
       showGameRulesDialog,
+      showAboutDialog,
       board,
       isGeneratingGame,
       cancelGameGeneration,
@@ -198,6 +210,7 @@ export default {
   components: {
     ChessBoard,
     NewGameDialog,
+    AboutDialog,
     GameRules,
     IonPage,
     IonContent,
@@ -236,6 +249,10 @@ button.games_rules {
 
 button.cancel_generation {
   background-color: red;
+}
+
+button.about_dlg {
+  background-color: orangered;
 }
 
 #controls {

@@ -9,6 +9,7 @@ export default {
     cancel_generation: "Cancelar generación de juegos",
     opponent_pieces: "enemigos",
     possible_solution: "(Solución posible)",
+    about_button: "A proposito",
   },
   game_messages: {
     congratulation_alert: "Felicidades.",
@@ -24,4 +25,9 @@ export default {
       "El objetivo del juego es intentar comerse todas las piezas con tu caballero.",
     content_2: "Ganas si no queda más pieza del oponente.",
   },
+  about_dialog: {
+    title: "A proposito",
+    application_icon: "El icono de la aplicación se descargó del sitio web FlatIcon (https://www.flaticon.com/free-icon/jumping-horse-with-jockey_32979) y fue diseñado por FreePik.",
+    chess_vectors: "Los vectores de ajedrez se descargaron de Wikimedia Commons (https://commons.wikimedia.org/wiki/Category:SVG_chess_pieces) y fueron diseñados por CBurnett.",
+  }
 };

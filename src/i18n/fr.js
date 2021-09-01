@@ -9,6 +9,7 @@ export default {
     cancel_generation: "Annuler la génération du jeu",
     opponent_pieces: "ennemis",
     possible_solution: "(Solution possible)",
+    about_button: "A propos",
   },
   game_messages: {
     congratulation_alert: "Félicitations.",
@@ -24,4 +25,9 @@ export default {
       "Le but du jeu est d'essayer de manger toutes les pièces adverses avec votre cavalier.",
     content_2: "Vous gagnez si l'adversaire ne dispose plus de pièce.",
   },
+  about_dialog: {
+    title: "A propos",
+    application_icon: "L'icône de l'application a été téléchargée depuis le site FlatIcon (https://www.flaticon.com/free-icon/jumping-horse-with-jockey_32979) et a été dessinée par FreePik.",
+    chess_vectors: "Les images du jeu d'échec ont été téléchargées depuis le site Wikimedia Commons (https://commons.wikimedia.org/wiki/Category:SVG_chess_pieces) et ont été dessinées par CBurnett.",
+  }
 };

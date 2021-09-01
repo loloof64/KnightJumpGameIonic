@@ -9,6 +9,7 @@ export default {
     cancel_generation: "Cancel game generation",
     opponent_pieces: "ennemies",
     possible_solution: "(Possible solution)",
+    about_button: "About",
   },
   game_messages: {
     congratulation_alert: "Congratulations.",
@@ -24,4 +25,9 @@ export default {
       "The goal of the game is to try to eat all pieces with your knight.",
     content_2: "You win if there is no more opponent piece left.",
   },
+  about_dialog: {
+    title: "About",
+    application_icon: "Application icon has been downloaded from FlatIcon website (https://www.flaticon.com/free-icon/jumping-horse-with-jockey_32979) and designed by FreePik.",
+    chess_vectors: "Chess vectors have been downloaded from Wikimedia Commons (https://commons.wikimedia.org/wiki/Category:SVG_chess_pieces) and designed by CBurnett.",
+  }
 };
