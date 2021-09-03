@@ -97,4 +97,5 @@ app/src/main/assets/public
 
 # Keystore
 app/my-android-keystore.jks
+app/KnightJumpGame.keystore
 keystore.properties
