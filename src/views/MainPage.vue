@@ -168,7 +168,10 @@ export default {
     onMounted(() => {
       const screenWidth = window.screen.width;
       const screenHeight = window.screen.height;
-      const minSize = Math.min(screenWidth, screenHeight) * 0.92;
+      let minSize = Math.min(screenWidth, screenHeight);
+      const orientationType = ScreenOrientation.type;
+      const isPortrait = orientationType.includes("portrait");
+      minSize = isPortrait ? minSize : minSize * 0.90;
       cellsSize.value = minSize / 8;
 
       adjustLayoutDirection();
@@ -236,7 +239,7 @@ html {
 button {
   border-radius: 0.4rem;
   color: white;
-  font-size: 1.6rem;
+  font-size: 1.0rem;
 }
 
 button.new_game {

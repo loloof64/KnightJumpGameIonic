@@ -70,6 +70,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
+  overflow: scroll;
 }
 
 .buttons_zone {
