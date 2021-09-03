@@ -98,4 +98,6 @@ app/src/main/assets/public
 # Keystore
 app/my-android-keystore.jks
 app/KnightJumpGame.keystore
+app/KnightJumpGame.jks
+app/upload_certificate.pem
 keystore.properties
