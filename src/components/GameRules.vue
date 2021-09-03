@@ -54,7 +54,7 @@ export default {
 #backdrop {
   position: absolute;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   background-color: grey;
   width: 100%;
