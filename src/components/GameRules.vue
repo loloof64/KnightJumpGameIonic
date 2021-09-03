@@ -54,7 +54,7 @@ export default {
 #backdrop {
   position: absolute;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   background-color: grey;
   width: 100%;
@@ -68,7 +68,7 @@ export default {
   height: 80%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: stretch;
   overflow: scroll;
 }
